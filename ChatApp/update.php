@@ -6,7 +6,7 @@ if(!isset($_SESSION['unique_id'])){
   header("Location: index.php");}
 
 
-  $sessionId = $_SESSION["unique_id"];
+$sessionId = $_SESSION["unique_id"];
 $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE unique_id = $sessionId"));
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE unique
   </head>
   <style media="screen">
     .upload{
-      width: 140px;
+      width: 315px;
       position: relative;
       margin: auto;
       text-align: center;
@@ -26,13 +26,14 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE unique
     .upload img{
       border-radius: 50%;
       border: 8px solid #DCDCDC;
-      width: 125px;
-      height: 125px;
+      width: 300px;
+      height: 300px;
     }
     .upload .rightRound{
       position: absolute;
       bottom: 0;
       right: 0;
+      left: 210px;
       background: #00B4FF;
       width: 32px;
       height: 32px;
@@ -45,7 +46,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE unique
     .upload .leftRound{
       position: absolute;
       bottom: 0;
-      left: 0;
+      left: 70px;
       background: red;
       width: 32px;
       height: 32px;
@@ -66,6 +67,24 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE unique
     .upload input::-webkit-file-upload-button, .upload input[type=submit]{
       cursor: pointer;
     }
+    .button {
+    background-color: #0d6efd; 
+      border: none;
+      color: white;
+    padding: 6px 12px;
+        text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      -webkit-transition-duration: 0.4s; 
+      transition-duration: 0.4s;
+      }
+      .button2:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+      }
+
   </style>
   <body>
     <form class="form" id = "form" action="" enctype="multipart/form-data" method="post">
@@ -87,7 +106,9 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE unique
         </div>
       </div>
     </form>
-
+    <div style="text-align: center;padding: 20px 0px 20px;">
+            <button class="button button2" ><a href="edit.php" style="color: white; text-decoration: none;" >Geri</a></button>
+          </div>
     <script type="text/javascript">
       document.getElementById("fileImg").onchange = function(){
         document.getElementById("image").src = URL.createObjectURL(fileImg.files[0]); 
@@ -123,7 +144,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE unique
       $query = "UPDATE users SET img = '$imageName' WHERE unique_id = $id";
       mysqli_query($conn, $query);
 
-      header("Location: index.php");
+      header("Location: users.php");
     }
   ?>
   </body>

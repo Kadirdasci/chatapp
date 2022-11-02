@@ -23,7 +23,7 @@
             <p><?php echo $row['status']; ?></p>
           </div>
         </div>
-        <a href="update.php" style="background: #4E6C50; margin-left: 60px;" class="logout">Profil</a>
+        <a href="edit.php" style="background: #4E6C50; margin-left: 60px;" class="logout">Profil</a>
         <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">ÇIKIŞ</a>
       </header>
       <div class="search">
