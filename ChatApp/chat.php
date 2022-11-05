@@ -36,8 +36,15 @@
       </form>
     </section>
   </div>
+  <?php
 
+$outgoing_id = $_SESSION['unique_id'];
+$sql = "UPDATE messages SET status='1' WHERE incoming_msg_id={$outgoing_id} AND outgoing_msg_id={$row['unique_id']}";
+$res = mysqli_query($conn, $sql);
+
+?>
   <script src="javascript/chat.js"></script>
+  
 
 </body>
 </html>

@@ -14,8 +14,13 @@
         }
         ($row['status'] == "Çevrimdışı") ? $offline = "offline" : $offline = "";
         ($outgoing_id == $row['unique_id']) ? $hid_me = "hide" : $hid_me = "";
-        
-        $output .= '<a href="chat.php?user_id='. $row['unique_id'] .'">
+
+
+        $sql3 = "SELECT * FROM messages WHERE incoming_msg_id={$_SESSION['unique_id']} AND outgoing_msg_id={$row['unique_id']} AND status='0' ";
+        $res = mysqli_query($conn, $sql3); 
+        $count =  mysqli_num_rows($res);
+
+        $output .= '<a  href="chat.php?user_id='. $row['unique_id'] .'" id="notifications">
                     <div class="content">
                     <img src="php/images/'. $row['img'] .'" alt="">
                     <div class="details">
@@ -23,7 +28,12 @@
                         <p>'. $you . $msg .'</p>
                     </div>
                     </div>
-                    <div class="status-dot '. $offline .'"><i class="fas fa-circle"></i></div>
+                    
+                    <div class="status-dot '. $offline .'"><i class="fas fa-circle"></i>   
+                    <span  class="count">'. $count .'</span>
+                    </div>
+
                 </a>';
     }
+   
 ?>
