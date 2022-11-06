@@ -54,7 +54,7 @@ if(!isset($_SESSION['unique_id'])){
         
         <form class="shadow w-450 p-3" id="form" action="" method="post" enctype="multipart/form-data">
               <input type="hidden" name="unique_id" value="<?php echo $user['unique_id']; ?>">
-          <section class="users" style="padding: 40px 0px;">
+          <section class="users" style="padding: 20px 0px;">
             <header>
               <div class="content">
                 <h5 class="display-5  fs-1">Profil Güncelle</h5><br>  
@@ -62,14 +62,18 @@ if(!isset($_SESSION['unique_id'])){
                 <a href="users.php" style="background: #333; color: white; " class="button button2">Geri</a>
             </header>
           </section>
-          <div class="mb-3" style="padding: 0px 0px 30px;">
+          <div class="mb-3" style="padding: 0px 0px 15px;">
             <label class="form-label">Adınız</label>
             <input type="text" class="form-control" name="fname" value="<?php echo $user['fname']?>">
           </div>
 
-          <div class="mb-3" style="padding: 0px 0px 30px;">
+          <div class="mb-3" style="padding: 0px 0px 15px;">
             <label class="form-label">Soyadınız</label>
             <input type="text" class="form-control" name="lname" value="<?php echo $user['lname']?>">
+          </div>
+          <div class="mb-3" style="padding: 0px 0px 15px;">
+            <label class="form-label">Durum</label>
+            <input type="text" class="form-control" name="situation" value="<?php echo $user['situation']?>">
           </div>
 
           <div style="text-align: center;padding: 0px 0px 20px;">
@@ -84,8 +88,9 @@ if(!isset($_SESSION['unique_id'])){
       $id = $_POST["unique_id"];
       $fname = $_POST['fname'];
       $lname = $_POST['lname'];
+      $situation = $_POST['situation'];
 
-      $query = "UPDATE users SET fname = '$fname', lname = '$lname' WHERE unique_id = $id";
+      $query = "UPDATE users SET fname = '$fname', lname = '$lname', situation = '$situation' WHERE unique_id = $id";
       mysqli_query($conn, $query);
 
       header("Location: index.php");

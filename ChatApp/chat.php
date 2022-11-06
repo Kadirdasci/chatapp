@@ -31,7 +31,7 @@
       </div>
       <form action="#" class="typing-area">
         <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
-        <input type="text" name="message" class="input-field" placeholder="Mesaj yazın..." autocomplete="off">
+        <input  style="widht=500px" data-emoji-picker="true" type="text" name="message" class="input-field" placeholder="Mesaj yazın..." autocomplete="off">
         <button><i class="fab fa-telegram-plane"></i></button>
       </form>
     </section>
@@ -44,7 +44,12 @@ $res = mysqli_query($conn, $sql);
 
 ?>
   <script src="javascript/chat.js"></script>
-  
+  <script src="src/emojiPicker.js"></script>
+  <script>
+    (() => {
+      new EmojiPicker()
+    })()
+  </script>
 
 </body>
 </html>
