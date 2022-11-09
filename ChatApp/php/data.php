@@ -18,7 +18,8 @@
 
         $sql3 = "SELECT * FROM messages WHERE incoming_msg_id={$_SESSION['unique_id']} AND outgoing_msg_id={$row['unique_id']} AND status='0' ";
         $res = mysqli_query($conn, $sql3); 
-        $count =  mysqli_num_rows($res);
+        /* $count =  (mysqli_num_rows($res) > 0); */
+         $count =  mysqli_num_rows($res); 
 
         $output .= '<a  href="chat.php?user_id='. $row['unique_id'] .'" id="notifications">
                     <div class="content">

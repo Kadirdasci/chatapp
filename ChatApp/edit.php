@@ -59,7 +59,7 @@ if(!isset($_SESSION['unique_id'])){
               <div class="content">
                 <h5 class="display-5  fs-1">Profil Güncelle</h5><br>  
               </div>
-                <a href="users.php" style="background: #333; color: white; " class="button button2">Geri</a>
+              <a href="users.php" style="background: #333; color: white;" class="button button2"><i class="fas fa-arrow-left"></i></a>
             </header>
           </section>
           <div class="mb-3" style="padding: 0px 0px 15px;">
@@ -78,6 +78,7 @@ if(!isset($_SESSION['unique_id'])){
 
           <div style="text-align: center;padding: 0px 0px 20px;">
             <button type="submit" name="submit" class="button button2">Güncelle</button>
+            <button class="button button2" ><a href="passwordUpdate.php" style="color: white; text-decoration: none;" >Şifre Güncelleme</a></button>
             <button class="button button2" ><a href="update.php" style="color: white; text-decoration: none;" >Profil Resmi</a></button>
           </div>
         </form>
