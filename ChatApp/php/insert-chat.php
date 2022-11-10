@@ -8,6 +8,10 @@
         if(!empty($message)){
             $sql = mysqli_query($conn, "INSERT INTO messages (incoming_msg_id, outgoing_msg_id, msg)
                                         VALUES ({$incoming_id}, {$outgoing_id}, '{$message}')") or die();
+            $sql1 = "UPDATE users set date = CURRENT_TIMESTAMP WHERE unique_id ={$incoming_id} ";
+            $sql2 = "UPDATE users set date = CURRENT_TIMESTAMP WHERE unique_id ={$outgoing_id} ";
+            $res = mysqli_query($conn, $sql1);
+            $res = mysqli_query($conn, $sql2);
         }
     }else{
         header("location: ../login.php");
