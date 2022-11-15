@@ -64,28 +64,30 @@
     <section class="chat-area">
       <header>
         <?php 
-          $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
-          $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
+          $user_id = mysqli_real_escape_string($conn, $_GET['group_unique_id']);
+          
+          $sql = mysqli_query($conn, "SELECT * FROM group_chat WHERE group_unique_id = {$user_id} ");
           if(mysqli_num_rows($sql) > 0){
             $row = mysqli_fetch_assoc($sql);
           }else{
             header("location: users.php");
           }
         ?>
-        <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+        <a href="groupList.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
         <img src="php/images/<?php echo $row['img']; ?>" alt="">
         <div class="details">
-          <span><?php echo $row['fname']. " " . $row['lname'] ?></span>
-          <p><?php echo $row['status']; ?></p>
+          <span><?php echo $row['name']?></span>
+          
         </div>
        
-        <button style="margin-left: 185px;color: black;background-color: white;border: none;padding: unset;" id="myBtn"><i class="fa fa-user" aria-hidden="true"></i></button>
+        <button style="margin-left: 170px;color: black;background-color: white;border: none;padding: unset;" id="myBtn"><i class="fa fa-user" aria-hidden="true"></i></button>
       </header>
       <div class="chat-box">
 
       </div>
       <form action="#" class="typing-area">
         <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
+        <input type="text" class="group_members" name="group_members" value="<?php echo $group_members; ?>" hidden>
         <input  style="width: 333px;" data-emoji-picker="true" type="text" name="message" class="input-field" placeholder="Mesaj yazın..." autocomplete="off">
         <button><i class="fab fa-telegram-plane"></i></button>
       </form>
@@ -97,17 +99,17 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header" style="padding-bottom: 5px;display: flex;justify-content: space-between;align-items: center;">
-          <h3 ><?php echo $row['fname']." "; ?>Hakkında</h3>
+          <h3 ><?php echo $row['name']." "; ?>Hakkında</h3>
           <span class="close">&times;</span>
         </div>
         <hr style="margin-bottom: 20px;box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);height: 1px;background-color: #f7f7f7;border: none;">
         <div class="modal-body">
           <div class="card" style="margin-bottom: 15px;">
           <img style="width:100%" src="php/images/<?php echo $row['img']; ?>" alt="">
-  <h2><span><?php echo $row['fname']. " " . $row['lname'] ?></span></h2>
-  <p class="title"><?php echo $row['email']; ?></p>
+  <h2><span><?php echo $row['name']?></span></h2>
+<!--   <p class="title"><?php echo $row['email']; ?></p>
         
-  <p><?php echo $row['situation']; ?></p>
+  <p><?php echo $row['situation']; ?></p> -->
   </br>
         </div>
         
@@ -116,19 +118,7 @@
     </div>
   </div>
   
-
-
-
-
-  <?php
-
-$outgoing_id = $_SESSION['unique_id'];
-$sql = "UPDATE messages SET status='1' WHERE incoming_msg_id={$outgoing_id} AND outgoing_msg_id={$row['unique_id']}";
-$res = mysqli_query($conn, $sql);
-
-
-?>
-  <script src="javascript/chat.js"></script>
+  <script src="javascript/group.js"></script>
   <script src="src/emojiPicker.js"></script>
   <script>
     (() => {

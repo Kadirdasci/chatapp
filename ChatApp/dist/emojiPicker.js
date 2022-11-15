@@ -72,7 +72,7 @@
           }
         };
 
-     /*    emojiInput.style.width = "333px"; */
+        emojiInput.style.width = "333px"; 
 
         var emojiContainer = document.createElement("div");
         emojiContainer.style.position = "relative";
