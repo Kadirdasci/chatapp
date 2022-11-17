@@ -14,6 +14,8 @@
             $sql = mysqli_query($conn, "INSERT INTO group_message (incoming_msg_id, outgoing_msg_id, group_members, msg)
                                         VALUES ({$incoming_id}, {$outgoing_id}, '{$res}', '{$message}')") or die();
                                        
+                                       $sql1 = "UPDATE group_chat set date = CURRENT_TIMESTAMP WHERE group_unique_id ={$incoming_id} ";
+                                       $res = mysqli_query($conn, $sql1);
         }
     }else{
         header("location: ../login.php");

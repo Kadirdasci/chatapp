@@ -69,7 +69,7 @@ if(!isset($_SESSION['unique_id'])){
 	        <tr>
 	        </tr>
             <?php 
-                $query = $conn->query("SELECT * FROM group_chat");     
+                $query = $conn->query("SELECT * FROM group_chat WHERE group_created_id = $sessionId");     
                 while ($row = $query->fetch_assoc()) { 
                 $id = $row['group_id']; 
                 $name = $row['name'];
@@ -79,7 +79,7 @@ if(!isset($_SESSION['unique_id'])){
                     <td><img src="php/images/<?php echo $img; ?>" alt="" style="object-fit: cover; border-radius: 50%; height: 50px; width: 50px;" ></td>
 	            	<td><?php echo $name ?></td>
                     <td></td>
-	            	<td><a href="duzenle.php?id=<?php  $id ?>" class="btn btn-primary">Düzenle</a></td>
+	            	<td><a href="group_update.php?group_id=<?php echo $id ?>" class="btn btn-primary">Düzenle</a></td>
 	            	<td><a href="group_delete.php?group_id=<?php echo $id; ?>" class="btn btn-danger">Sil</a></td>
 	            </tr>
             <?php } ?>
